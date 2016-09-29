@@ -1,0 +1,26 @@
+analytic evaluations -
+	analytic - deterministic modeling
+		Advantages: Simplicity, 
+		Disadvantages: Static environment 
+	queuing model - gets rid of static environment
+		adv: working with dynamic work load
+		dis: use of assumptions that is reason for creating imprecise results
+		the generated mathamatical formulas are complex and sometimes impractical
+	simulation -
+		1 - build a model of the system
+		2 - create work loads randomly
+		Adv:
+		Dis: treating random numbers; order of the jobs
+	implementation - measure ur system beahavior and u pick an algorithm
+		adv: no assumptions
+		dis: impatience of the user
+
+multi-processor scheduling
+	all the processes are the same in structure
+	homogenous cpu's
+	1- every cpu has its own ready queue
+	2- having a shared ready queue
+	3- Having a common scheduler
+
+Real time scheduling
+	Hard Real time system - decid
