@@ -57,7 +57,7 @@ int main()
         }
         
     }
-    std::cout << source << std::endl;
+   
     if (failed_part1 == false){
         
         key = (key % 10 + 2);

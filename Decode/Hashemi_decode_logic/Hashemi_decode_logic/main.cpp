@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     int count = 1, stars = 0, start = 0;
     char asterisk = 42;
-    string message = "**MWUULNGXAP 12 15 7 6***  GHYTRKL MNP 1 0 0 -1 2 3  12*CDM UYKOOKPIRQQN";
+    string message = "** MWUULNGXAP 12 15 7 6  ***GHYTRKL MNP 1 0 0 -1 2 3  12* CDM UYKOOKPIRQQN    ";
     string messageSub, messageHil, messagePin;
     for (int x = 0; x < message.size(); x++){
         bool charFOUND = false;
