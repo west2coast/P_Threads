@@ -21,10 +21,10 @@ int main(int argc, const char * argv[]) {
    
     
         int fails = 0, star = 0, starONE = 0, starTWO = 0, starTHREE = 0; // starCount is total # of stars; star is just to send the right information to certain areas
-        bool inputFAIL = false, inputPASS = false, starMORE = false, stringRESTARTED = false; //starCheck = false;
+        bool inputFAIL = false, inputPASS = false, starMORE = false, stringRESTARTED = false, inputKEYWORD = false; //starCheck = false;
         string input;
         cout << "Enter a character string: ";
-        while((getline(cin, input) && (fails < 3)) && (inputPASS != true)){
+        while((getline(cin, input) && (fails < 3)) && (inputKEYWORD != true)){
             inputFAIL = false;
             if(input.empty()){ // checks to see if string is empty
                 inputFAIL = true;
@@ -93,12 +93,21 @@ int main(int argc, const char * argv[]) {
                     
                 }
                 if((starONE != 1 && 1 != starTWO && 1 != starTHREE)){
+                    if (input == "DAM"){
+                        inputKEYWORD = true;
+                    }else {
                     fails++;
                     inputFAIL = true;
                     input.clear();
+                    }
+                  
                     
                 }else if ((starONE == 1) && (1 == starTWO) && (1 == starTHREE)){
-                    inputPASS = true;// approves message and exits loops
+                    cout << input << endl;
+                    starONE = starTWO = starTHREE = 0;
+                    inputFAIL = false;
+                    input.clear();
+                        //inputPASS = true;// approves message and exits loops
                 }
                 
                 } // exit for loop
@@ -112,10 +121,9 @@ int main(int argc, const char * argv[]) {
                 exit(EXIT_FAILURE);
             }
            if(inputPASS){
-                cout << "FUCK YEA" << fails;
+                cout << input;
             }
-            starONE = starTWO = starTHREE = 0;
-            inputFAIL = false;
+
 //    cout << fails ;
     
 return 0;
