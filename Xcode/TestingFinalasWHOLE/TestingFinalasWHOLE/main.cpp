@@ -35,14 +35,16 @@ void* sifter(void*){
     pthread_t decoders;
     
     int fails = 0, star = 0, starONE = 0, starTWO = 0, starTHREE = 0; // starCount is total # of stars; star is just to send the right information to certain areas
-    bool inputFAIL = false, inputPASS = false, starMORE = false, stringRESTARTED = false, inputKEYWORD = false; //starCheck = false;
+    bool inputFAIL = false, inputPASS = false, starMORE = false, inputKEYWORD = false; //starCheck = false;
     string input;
-    cout << "Enter a character string: ";
-    while((getline(cin, input) && (fails < 3)) && (inputKEYWORD != true)){
-        
+    while((fails < 3) && (inputKEYWORD != true)){
+        cout << "\nEnter a character string(You got " << 3 - fails << " tries left): ";
+        getline(cin,input);
         inputFAIL = false;
         if(input == "DAM"){
             inputKEYWORD = true;
+            cout<< "\nKeyword entered. Now Exiting program!!" << endl;
+            break;
         }
         else if(input.empty()){ // checks to see if string is empty
             inputFAIL = true;
@@ -77,7 +79,6 @@ void* sifter(void*){
                             notNULL = false;
                         }
                         x++;
-                        
                     }
                     
                     if (notNULL != false){
@@ -95,28 +96,24 @@ void* sifter(void*){
                             starMORE = true;
                         }
                     }
-                    else if (stringRESTARTED != true){
-                        fails++;
-                        inputFAIL = true;
-                        input.clear();
-                    }
                     
                 }
                     // if there were no stars in the string or if it's finished and all stars don't equal
                 
-            }
+            }// exit for loop
             
             if((starONE != 1 && 1 != starTWO && 1 != starTHREE)){
                 
                 if (input == "DAM"){
                     inputKEYWORD = true;
-                }else {
+                }else{
                     fails++;
                     inputFAIL = true;
                     input.clear();
                 }
                 
-            }else if ((starONE == 1) && (1 == starTWO) && (1 == starTHREE)){
+            }
+            else if ((starONE == 1) && (1 == starTWO) && (1 == starTHREE)){
                 inputPASS = true;
                 if(inputPASS){
                     
@@ -129,8 +126,9 @@ void* sifter(void*){
                     pthread_join(decoders, NULL);
                 }
                 starONE = starTWO = starTHREE = 0;
-                inputPASS = inputFAIL = false;
-                input.clear();
+                inputPASS = false;
+                inputFAIL = true;
+                    input.clear();
             }
             
         } // exit for loop
@@ -224,7 +222,6 @@ void* substitute (void* input){ // part1
             }
             keyFound = true;
         }
-        
     }
     for(int i = placeOfKey; i < source.size(); i++){
         char l = source.at(i);
@@ -240,7 +237,6 @@ void* substitute (void* input){ // part1
         else{
             failed_part1 = true;
         }
-        
     }
     
     if (failed_part1 == false){
@@ -250,7 +246,6 @@ void* substitute (void* input){ // part1
         
         for(int k=0; k < message.size(); k++)
         {
-            
             char alpha = message.at(k);
             
             if (!isspace(alpha)){
@@ -264,28 +259,19 @@ void* substitute (void* input){ // part1
                 message.at(k) = alpha;
             }
         }
-        cout << "Substitute:";
+        cout << "\nSubstitute:";
         for (int m = 0; m < message.size(); m ++){
             char kim = message.at(m);
             cout << kim;
         }
     }
     else{
-        cout << "This fails";
+        cout << "\nSubstitute Fails: Contains non-alphabet letters";
     }
-    cout << endl;
+    
     return (0);
 }
-int mod2lus (int value, int number){
-    if (number < 0){
-        return mod2lus(value, -number);
-    }
-    int value2 = value % number;
-    if (value2 < 0){
-        value2 += number;
-    }
-    return value2;
-}
+
 void* hill (void* input){ // part2
     int count2, start2 = 0, countSECT1 = 0, begin = 0, end = 0;
     int m = 0,n = 0,o = 0,p = 0;
@@ -379,22 +365,24 @@ void* hill (void* input){ // part2
         o = stoi(numbers.at(2));
         p = stoi(numbers.at(3));
         for (int t = 0; t < sectionONE.size(); t++){
-            char a = sectionONE.at(t);
-            int temp = t+1;
-            char b = sectionONE.at(temp);
-            int aValue = alphabet.at(a);
-            int bValue = alphabet.at(b);
+            int temp = t;
+            char a = sectionONE.at(t), b = sectionONE.at(temp+1);
+            int aValue = alphabet.at(a), bValue = alphabet.at(b);
+            int Avalue = (m * aValue) + (n * bValue), Bvalue = (o * aValue) + (p * bValue);
+            Avalue = Avalue % 26;
+            Bvalue = Bvalue % 26;
             
-            int Avalue = (m * aValue) + (n * bValue);
-            int Bvalue = (o * aValue) + (p * bValue);
-            
-            Avalue = mod2lus(Avalue,26);
-            Bvalue = mod2lus(Bvalue ,26);
+            while (Avalue < 0 || Bvalue < 0){
+                if (Avalue < 0)
+                    Avalue += 26;
+                else if (Bvalue < 0)
+                    Bvalue += 26;
+            }
             
             a = numAlpha.at(Avalue);
             b = numAlpha.at(Bvalue);
             if (t == 0){
-                cout << "Pinnacol: " << a << b;
+                cout << "\nHill: " << a << b;
             }else{
                 cout << a << b;
             }
@@ -404,10 +392,12 @@ void* hill (void* input){ // part2
         }
         
     }
-    else{
-        cout << "Hill: The Hill Fails";
+    else if(!sectONEFAIL){
+        cout << "\nHill Fails: Section 1 includes characters other than alphabet characters or number of characters is not even.";
+    }else if (!sectTWOFAIL){
+        cout << "\nHill Fails: Either the number of tokens in section 2 is not 4 or they are not made up of only digits.";
     }
-    cout << endl;
+
     return 0;
 }
 void* pinnacol (void* input){ // part3
@@ -448,7 +438,6 @@ void* pinnacol (void* input){ // part3
     }
     
     sectionONE = temp;
-    
     sectionTWO = message.substr(start2, count2);
     for (int x = 0; x < sectionONE.size(); x++){
         if (isalpha(sectionONE[x])){
@@ -484,17 +473,15 @@ void* pinnacol (void* input){ // part3
                     end = 0;
                 }
             }
-            
         }
         if (end > 0){
             values = sectionTWO.substr(begin,end);
             numbers.push_back(values);
             end = 0;
         }
-        
     }
     
-    if (numbers.size() != 4){
+    if (numbers.size() != 9){
         sectTWOFAIL = true;
     }
     if(!sectONEFAIL && !sectTWOFAIL){
@@ -513,28 +500,32 @@ void* pinnacol (void* input){ // part3
             int aValue = alphabet.at(a), bValue = alphabet.at(b), cValue = alphabet.at(c);
             int Avalue = (m * aValue) + (n * bValue) + (o * cValue), Bvalue = (p * aValue) + (q * bValue) + (r * cValue),
             Cvalue = (s * aValue) + (t * bValue) + (u * cValue);
-            Avalue = mod2lus(Avalue,26);
-            Bvalue = mod2lus(Bvalue,26);
-            Cvalue = mod2lus(Cvalue,26);
+            Avalue = Avalue % 26;
+            Bvalue = Bvalue % 26;
+            Cvalue = Cvalue % 26;
+            while (Avalue < 0 || Bvalue < 0 || Cvalue < 0){
+                if (Avalue < 0)
+                    Avalue += 26;
+                else if (Bvalue < 0)
+                    Bvalue += 26;
+                else if (Cvalue < 0)
+                    Cvalue += 26;
+            }
             a = numAlpha.at(Avalue);
             b = numAlpha.at(Bvalue);
             if (t == 0){
-                cout << "Pinnacol: " << a << b << c;
+                cout << "\nPinnacol: " << a << b << c;
             }else{
                 cout << a << b << c;
             }
             
-            t = temp;
-            
+            t = temp+2;
         }
-        
     }
-    else{
-        cout << "Pinnacol: The Pinnacol Fails";
+    else if (!sectONEFAIL){
+        cout << "\nPinnacol Fails: " << "Section 1 includes characters other than alphabet characters or the number of characters in the section 1 is not even ."<< endl;
+    }else if(!sectTWOFAIL){
+        cout << "\nPinnacol Fails: Either the number of tokens in section 2 is not 4 or they are not made up of only digits." << endl;
     }
-    cout << endl;
     return 0;
 }
-
-
-

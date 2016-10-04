@@ -1,0 +1,32 @@
+Enter a character string: ** ACDUJF 1 4 6 12***MNKLHY 1 2 3 4 5 6 7 8 9*M FGCV
+Substitute: BCYR
+Hill: IYFYDK
+Pinnacol: QRKTPY
+Enter a character string: ** KMLN 12 3 4 17 *** GHL 9 9 8 8 7 7 6  a6  5 * P TRBKHYT
+Substitute: MKUDARM
+Hill: AKPF
+Pinnacol: The Pinnacol Fails
+Enter a character string: *B PHHW PH DIVHU WKH WRJD SDUWB
+Enter a character string: * MNKK LLSGQW
+Enter a character string: **GG CI MOQN 9 2 1   15 ***ST TNJVQLAIVDIG 21 20 24 21 24 9 -5 21 21
+Program ended with exit code: 0
+
+Enter a character string: **GGMLN 12 3 4 b17 *** GHL 9 9 8 8 7 7 6  16  5 * P GRBKHYT
+Substitute: ZKUDARM
+Hill: The Hill Fails
+Pinnacol: XSL
+Enter a character string: ** BBLN 12 3 4 17 *** GHL 9 9 8 8 7 7 6  6  5 * CRKLMNBKHYT
+Substitute:NGHIJXGDUP
+Hill: PVPF
+Pinnacol: XSL
+Enter a character string: **   MWUULNGXAP 12 15 7 6***   GHYTRKL MNP 1 0 0 -1 2 3  12*CDM UYKOOKPIRQQN
+Substitute:ZI QUGKKGLENMMJ
+Hill: GIUAPZBYRM
+Pinnacol: The Pinnacol Fails
+Enter a character string: *zg ZHCHUUHOPXKPYAF***GHEDQHQQ 9  11 4 5 ** ABHJUTVOP 5 -2 3 4 12 32 1 0 3
+Substitute:XE XFAFSSFMNVINWYD
+Hill: The Hill Fails
+Pinnacol: The Pinnacol Fails
+Enter a character string: *** ABC 5 6 7 8 10 1 4 8 11*K SAAPXGOW**MKPW 10 2 12 1*J RZZOWFNV
+Enter a character string: DAM
+Program ended with exit code: 0

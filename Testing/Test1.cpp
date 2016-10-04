@@ -273,7 +273,7 @@ void* substitute (void* input){
  return (0);
 }
    int count = 0, start = 0, count2, start2 = 0, countSECT1 = 0, begin = 0, end = 0;
-    int m = 0,n = 0,o = 0,p = 0;
+   int m = 0,n = 0,o = 0,p = 0;
     
     map<char,int> alphabet = {{'A',0},{'B',1},{'C',2},{'D',3},{'E',4},{'F',5},{'G',6},{'H',7},{'I',8},{'J',9},{'K',10},{'L',11},
     {'M',12},{'N',13},{'O',14},{'P',15},{'Q',16},{'R',17},{'S',18},{'T',19},{'U',20},{'V',21},{'W',22},{'X',23},{'Y',24},{'Z',25}};
