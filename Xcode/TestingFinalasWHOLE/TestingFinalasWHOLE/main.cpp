@@ -196,13 +196,13 @@ void *decoder(void *messages){
     }
     pthread_join(hill1T, NULL);
     
-         int result3 = pthread_create(&pinnacol1T, NULL, &pinnacol, &messagePin);
+    int result3 = pthread_create(&pinnacol1T, NULL, &pinnacol, &messagePin);
     
-         if (result3){
-         	printf("Error - pthread_create() return code: %d\n", result3);
-         	exit(EXIT_FAILURE);
-         }
-         pthread_join(pinnacol1T, NULL);
+    if (result3){
+        printf("Error - pthread_create() return code: %d\n", result3);
+        exit(EXIT_FAILURE);
+    }
+    pthread_join(pinnacol1T, NULL);
     pthread_exit(NULL);
 }
 void* substitute (void* input){ // part1
